@@ -8,6 +8,7 @@ Kidzl however, [**can be played here**](https://Kidzl.xyz/)
 
 ## Kidzl (*Flutter's Version*)
 The aim here is to transform this project from React into Flutter!
+Currently development is ongoing on the flutter branch and will be merged into main once complete. 
 
 ## Introduction
 
