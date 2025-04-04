@@ -31,7 +31,7 @@ class CluedLetter {
     }
   }
 
-  // Method to get the CSS-like class name for styling
+  // Method to get the CSS-like class name for styling, hopefully this works
   String get clueClass {
     switch (clue) {
       case Clue.absent:
@@ -107,7 +107,7 @@ class LetterChecker {
       }
 
       // Check if the letter is not in the keyboard specification
-      // Note: This would require passing the current difficulty
+      // This requires passing the current difficulty, need to speak to ZZ about it
       // return CluedLetter(letter: letter, clue: Clue.notInKeyboardSpec);
 
       // If none of the above, the letter is absent
