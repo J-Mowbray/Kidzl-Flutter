@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 class Dictionary {
@@ -104,7 +105,9 @@ class DictionaryLoader {
 
       return Dictionary(words);
     } catch (e) {
-      print('Error loading dictionary: $e');
+      if (kDebugMode) {
+        print('Error loading dictionary: $e');
+      }
       // Fallback to an empty dictionary if loading fails
       return Dictionary([]);
     }
