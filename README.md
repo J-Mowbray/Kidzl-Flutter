@@ -6,6 +6,9 @@ Based on the Wordle clone - Hello Wordl, which you can play [**here**](https://h
 
 Kidzl however, [**can be played here**](https://Kidzl.xyz/)
 
+## Kidzl (*Flutter's Version*)
+The aim here is to transform this project from React into Flutter!
+
 ## Introduction
 
 Wordle is a word game similar to the TV show [Lingo](<https://en.wikipedia.org/wiki/Lingo_(British_game_show)>).
