@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:math';
+import 'package:flutter/services.dart' show rootBundle;
 
 class Dictionary {
   // The full list of words
@@ -48,28 +50,63 @@ class Dictionary {
     return wordsOfLength[rng.nextInt(wordsOfLength.length)];
   }
 
-  // Filter words based on difficulty levels
+  // Updated method for difficulty-based filtering
   List<String> getWordsByDifficulty(int difficultyLevel, {int? length}) {
-    // This method would needs to be implemented based on specific difficulty criteria
-    // For now, it just returns words of the specified length or all words
+    final List<int> availableTargets = [
+      3, // SATPIN
+      4, // SATPIN+tricky
+      5, // SATPINCKEHRMD
+      6, // SATPINCKEHRMD+tricky
+      7, // SATPINCKEHRMDGOULFB
+      8, // SATPINCKEHRMDGOULFB+tricky
+      9, // Full word list
+    ];
+
+    // Ensure difficulty is within bounds
+    final clampedDifficulty = difficultyLevel.clamp(
+      0,
+      availableTargets.length - 1,
+    );
+
+    // Filter words based on difficulty level
+    final filteredWords =
+        words
+            .where((word) => word.length <= availableTargets[clampedDifficulty])
+            .toList();
+
+    // If length is specified, further filter by length
     if (length != null) {
-      return getWordsOfLength(length);
+      return filteredWords.where((word) => word.length == length).toList();
     }
-    return words;
+
+    return filteredWords;
   }
 
   // Get the total number of words
   int get wordCount => words.length;
 }
 
-// Loader for the dictionary
+// Updated Loader for the dictionary
 class DictionaryLoader {
-  // This is a placeholder. we'll want to load the words from a JSON asset
-  static Dictionary loadJollyPhonics() {
-    final words = [
-      'sat', 'at', 'sit', 'it', 'its', 'pat', 'tap',
-      // ... add more words from the original jollyPhonics.json
-    ];
-    return Dictionary(words);
+  // Load words from JSON asset asynchronously
+  static Future<Dictionary> loadJollyPhonics() async {
+    try {
+      // Load the JSON file from assets
+      final jsonString = await rootBundle.loadString(
+        'assets/jollyPhonics.json',
+      );
+
+      // Decode the JSON to a list of strings
+      final List<dynamic> wordList = json.decode(jsonString);
+
+      // Convert to a list of strings and create Dictionary
+      final words = wordList.map((word) => word.toString()).toList();
+
+      return Dictionary(words);
+    } catch (e) {
+      print('Error loading dictionary: $e');
+      // Fallback to an empty dictionary if loading fails
+      return Dictionary([]);
+    }
   }
 }
