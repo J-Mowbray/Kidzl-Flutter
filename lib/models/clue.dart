@@ -63,9 +63,14 @@ class LetterChecker {
     "satpinckehrmd *%",
     "satpinckehrmdgoulfbn *%",
     "satpinckehrmdgoulfbn *%",
+    "satpinckehrmdgoulfbnj *%",
+    "satpinckehrmdgoulfbnj *%",
     "satpinckehrmdgoulfbnjzwv *%",
     "satpinckehrmdgoulfbnjzwv *%",
-    // ... (continue the pattern from the original implementation)
+    "satpinckehrmdgoulfbnjzwvyx *%",
+    "satpinckehrmdgoulfbnjzwvyx *%",
+    "satpinckehrmdgoulfbnjzwvyxq *%",
+    "satpinckehrmdgoulfbnjzwvyxq *%",
   ];
 
   static bool isLetterAllowed(String letter, int currentDifficultyJP) {
